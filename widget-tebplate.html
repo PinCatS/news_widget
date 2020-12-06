@@ -9,11 +9,10 @@
 <body class="body">
   <div class="wrap"></div>
 
-  <section class="widget">
-
+  <section id="widget">
 
     <div class="widget__news-wrap">
-      <button class="widget__exit-button"></button>
+      <button type="button" aria-label="exit_button" class="widget__exit-button"></button>
       <button type="button" class="widget__news-item news-button news-button_not-visited">
         У попа была собака
       </button>
@@ -41,15 +40,19 @@
 
     </div>
 
-    <button class="widget__button-wrap">
-      <p class="widget__button-text">
-        Новых новостей
-      </p>
-      <p class="widget__button-number">
-        2
-      </p>
-    </button>
+    <tamplate id="#news-widget-button">
+      <button class="widget__button-wrap">
+        <p class="widget__button-text">
+          Новых новостей
+        </p>
+        <p class="widget__button-number">
+          2
+        </p>
+      </button>
+    </tamplate>   
 
   </section>
+
+<script src="news_widget.js"></script>
 </body>
 </html>
