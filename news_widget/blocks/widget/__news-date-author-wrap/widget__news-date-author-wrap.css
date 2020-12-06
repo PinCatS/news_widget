@@ -1,0 +1,5 @@
+.widget__news-date-author-wrap {
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+}

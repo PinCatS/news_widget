@@ -1,0 +1,14 @@
+.widget__button-wrap {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  border: none;
+  height: 31px;
+  width: fit-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  box-sizing: border-box;
+  background-color: #c4c4c4;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
