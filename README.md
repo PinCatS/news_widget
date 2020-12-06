@@ -1,5 +1,7 @@
 ### News_widget
 
+ссылка для теста https://nosdmitry.github.io/news_widget/testme.html
+
 **Установка**
 
 Скачайте папку news_widget и установите в корневую папку Вашего сайта.
