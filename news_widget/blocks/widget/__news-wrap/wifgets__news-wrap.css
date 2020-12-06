@@ -1,5 +1,7 @@
 .widget__news-wrap {
   position: fixed;
+  margin: 0 auto;
+  max-width: 700px;
   top: 20vh;
   left: 10vw;
   right: 10vw;
