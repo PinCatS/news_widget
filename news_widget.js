@@ -29,16 +29,18 @@ function createNewsExitButton() {
   newsWrapExitButton.setAttribute('type', 'button');
   newsWrapExitButton.setAttribute('aria-label', 'exit_button');
   newsWrapExitButton.classList.add('widget__exit-button');
+  newsWrapExitButton.addEventListener('click', () => {
+    const newsWrap = document.querySelector('.widget__news-wrap');
+    newsWrap.classList.add('widget__hidden');
+  });
   return newsWrapExitButton;
 }
 
 function createNews(newsArray) {
   const newsItem = document.createElement('button');
   const newsItemAndArticleContainer = document.createElement('div');
-  //newsItemAndArticleContainer.classList.add('widget__news-with-atricle');
   const newsArticleContainer = document.createElement('article');
   const newsDateAndAuthorContainer = document.createElement('div');
-  let numberOfNotReadedNews = document.querySelector('.widget__button-number');
 
   const newsDate = document.createElement('p');
   const newsAuthor = document.createElement('p');
@@ -72,7 +74,7 @@ function createNews(newsArray) {
         element.remove();
       }
     });
-    storedPlace.append(createButton());
+    storedPlace.append(createButton(countNotReadedNews()));
   });
 
   newsDateAndAuthorContainer.append(newsDate, newsAuthor);
@@ -85,6 +87,7 @@ function createNews(newsArray) {
 function formAllNewsInOneContainer() {
   const allNewsContainer = document.createElement('div');
   allNewsContainer.classList.add('widget__news-wrap');
+  allNewsContainer.classList.add('widget__hidden');
   allNewsContainer.append(createNewsExitButton());
   return allNewsContainer;
 }
@@ -102,8 +105,6 @@ function renderAllElements() {
   storedPlace.append(createButton(countNotReadedNews()));
 }
 
-
-
 function countNotReadedNews() {
   let count = 0;
   const newsItem = document.querySelectorAll('.widget__news-item');
@@ -118,21 +119,28 @@ function countNotReadedNews() {
   return count;
 }
 
-function createButton() {
-  const buttonWrap = document.createElement('div');
+renderAllElements();
+
+function createButton(evt) {
+  const buttonWrap = document.createElement('button');
   const buttonText = document.createElement('p');
   const buttonNumber = document.createElement('p');
   buttonNumber.classList.add('widget__button-number');
   buttonText.classList.add('widget__button-text');
   buttonWrap.classList.add('widget__button-wrap');
   buttonText.textContent = 'Новых новостей';
-  buttonNumber.textContent = countNotReadedNews();
+  buttonNumber.textContent = evt;
   buttonWrap.append(buttonText, buttonNumber);
   return buttonWrap;
 }
 
-renderAllElements();
+function openNewsList() {
+  const widgetButton = document.querySelector('.widget__button-wrap');
+  const widgetPopup = document.querySelector('.widget__news-wrap');
+  widgetButton.addEventListener('click', () => {
+    console.log('click');
+    widgetPopup.classList.remove('widget__hidden');
+  });
+}
 
-// let numberOfNotReadedNews = document.querySelector('.widget__button-number');
-// numberOfNotReadedNews.value = countNotReadedNews();
-// console.log(numberOfNotReadedNews.value);
+openNewsList();
