@@ -1,0 +1,8 @@
+.widget__article {
+  margin: 0;
+  padding: 7px 15px;
+  width: 100%;
+  border: 1px solid red;
+  box-sizing: border-box;
+  
+}
