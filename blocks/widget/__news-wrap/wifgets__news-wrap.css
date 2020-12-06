@@ -1,5 +1,8 @@
 .widget__news-wrap {
-  width: 100%;
+  position: relative;
+  /* top: 20vh;
+  left: 10vw;
+  right: 10vw; */
   height: auto;
   padding: 15px 13px;
   background-color: #c4c4c4;

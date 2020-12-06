@@ -2,7 +2,9 @@
   margin: 0;
   padding: 7px 15px;
   width: 100%;
-  border: 1px solid red;
   box-sizing: border-box;
-  
+  background-color: #F3F4F4;
+  display: grid;
+  grid-template-rows: auto auto auto;
+  row-gap: 5px;
 }

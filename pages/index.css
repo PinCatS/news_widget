@@ -5,6 +5,7 @@
 @import url(../blocks/widget/__button-wrap/widget__button-wrap.css);
 @import url(../blocks/widget/__button-text/widget__button-text.css);
 @import url(../blocks/widget/__button-number/widget__button-number.css);
+@import url(../blocks/widget/__exit-button/widget__exit-button.css);
 
 @import url(../blocks/widget/__news-wrap/wifgets__news-wrap.css);
 @import url(../blocks/widget/__news-item/widget__news-item.css);
