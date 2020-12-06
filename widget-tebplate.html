@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
   <div class="wrap"></div>
 
   <section id="widget">
-    
+    <template>
     <div class="widget__news-wrap">
       <button type="button" aria-label="exit_button" class="widget__exit-button"></button>
 
@@ -22,7 +22,7 @@
       <button type="button" class="widget__news-item news-button news-button_active">
         Она съела кусок мяса
       </button>
-        <article class="widget__article">
+        <article class="widget__article news news_visible">
           <div class="widget__news-date-author-wrap">
             <p class="widget__news-date">06.12.2020</p>
             <p class="widget__news-author">Антониус Никополидиус</p>
@@ -41,7 +41,7 @@
       </button>
 
     </div>
-    
+    </template>
 
     <template>
       <button class="widget__button-wrap">

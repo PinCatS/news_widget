@@ -17,6 +17,7 @@
 @import url(../blocks/widget/__news-link/widget__news-link.css);
 
 
-@import url(../blocks/news-button/news-button.css/_not-visited/news-button_not-visited.css);
-@import url(../blocks/news-button/news-button.css/_active/news-button_active.css);
-@import url(../blocks/news-button/news-button.css/_visited/news-button_visited.css);
+@import url(../blocks/news-button/_not-visited/news-button_not-visited.css);
+@import url(../blocks/news-button/_active/news-button_active.css);
+@import url(../blocks/news-button/_visited/news-button_visited.css);
+@import url(../blocks/news-button/_visible/visible.css);
