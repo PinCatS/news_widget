@@ -1,0 +1,6 @@
+@import url(../style/wrap/wrap.css);
+@import url(../vendor/fonts/inter.css);
+@import url(../style/widget/widget.css);
+@import url(../style/widget/__button-wrap/widget__button-wrap.css);
+@import url(../style/widget/__button-text/widget__button-text.css);
+@import url(../style/widget/__button-number/widget__button-number.css);
