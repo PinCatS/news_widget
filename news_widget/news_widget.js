@@ -9,9 +9,10 @@
 /*************************************************/
 
 
-// создание ссылки на стили в head
+// создание ссылки на стили в head.
+// при установке проверьте корректность пути!
 window.onload = function(){
-  const stylesheetPath = './styles/widget_styles.css';
+  const stylesheetPath = './news_widget/styles/widget_styles.css';
   const headTag = document.querySelector('head');
   const linkTag = document.createElement("link");
   linkTag.setAttribute('rel', 'stylesheet');
@@ -24,25 +25,25 @@ const storedPlace = document.querySelector('#widget');
 // массив данных для подстановки в виджет
 const newsArray = [
   {
-    title: 'У попа была собака', 
-    date: '06.12.2020', 
-    author: 'Антониус Никополидиус', 
-    paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam', 
-    link: 'http://yandex.ru'
+    title: 'Отказался от премии ', 
+    date: '12.09.2006', 
+    author: 'Григорий Перельман', 
+    paragraph: 'Я отказался. Вы знаете, у меня было очень много причин и в ту, и в другую сторону. Поэтому я так долго решал. Если говорить совсем коротко, то главная причина — это несогласие с организованным математическим сообществом. Мне не нравятся их решения, я считаю их несправедливыми. Я считаю, что вклад в решение этой задачи американского математика Гамильтона ничуть не меньше, чем мой', 
+    link: 'https://ru.wikipedia.org/wiki/%D0%9F%D0%B5%D1%80%D0%B5%D0%BB%D1%8C%D0%BC%D0%B0%D0%BD,_%D0%93%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%B8%D0%B9_%D0%AF%D0%BA%D0%BE%D0%B2%D0%BB%D0%B5%D0%B2%D0%B8%D1%87'
   }, 
   {
-    title: 'Она съела всё мясо', 
-    date: '04.12.2020', 
-    author: 'Сципион Африканский', 
-    paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam', 
-    link: 'http://yandex.ru'
+    title: 'Был бы человек, а статья найдётся', 
+    date: '14.04.1928', 
+    author: 'Иосиф Сталин', 
+    paragraph: 'Говорят, что невозможно коммунистам, особенно же рабочим коммунистам-хозяйственникам, овладеть химическими формулами и вообще техническими знаниями. Это неверно, товарищи. Нет в мире таких крепостей, которых не могли бы взять трудящиеся, большевики.', 
+    link: 'https://ru.wikipedia.org/wiki/%D0%A1%D1%82%D0%B0%D0%BB%D0%B8%D0%BD,_%D0%98%D0%BE%D1%81%D0%B8%D1%84_%D0%92%D0%B8%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%BE%D0%BD%D0%BE%D0%B2%D0%B8%D1%87'
   }, 
   {
     title: 'Сказание о еллинском философе и премудром Аристотеле', 
-    date: '06.12.2020', 
+    date: '370 г до н.э.', 
     author: 'Аристотель Премудрый', 
     paragraph: 'Образ же имел возраста своего средний. Глава его не велика, голос его тонок, очи малы, ноги тонки. А ходил в разноцветном и хорошем одеянии. А перстней и чепей золотых охочь был носити… а умывался в судне маслом древяным теплым', 
-    link: 'http://yandex.ru'
+    link: 'https://ru.wikipedia.org/wiki/%D0%90%D1%80%D0%B8%D1%81%D1%82%D0%BE%D1%82%D0%B5%D0%BB%D1%8C'
   }
 ];
 
@@ -81,6 +82,7 @@ function createNews(newsArray) {
   newsAuthor.textContent = newsArray.author;
   newsParagraph.textContent = newsArray.paragraph;
   newsLink.setAttribute('href', newsArray.link);
+  newsLink.setAttribute('target', '_black');
   newsLink.textContent = 'подробнее...';
 
   newsItem.setAttribute('type', 'button');
