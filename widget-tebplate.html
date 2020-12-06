@@ -10,37 +10,40 @@
   <div class="wrap"></div>
 
   <section id="widget">
-
+    
     <div class="widget__news-wrap">
       <button type="button" aria-label="exit_button" class="widget__exit-button"></button>
+
       <button type="button" class="widget__news-item news-button news-button_not-visited">
         У попа была собака
       </button>
 
+      <div class="widget__news-with-atricle">
       <button type="button" class="widget__news-item news-button news-button_active">
         Она съела кусок мяса
       </button>
-
-      <article class="widget__article">
-        <div class="widget__news-date-author-wrap">
-          <p class="widget__news-date">06.12.2020</p>
-          <p class="widget__news-author">Антониус Никополидиус</p>
-        </div>  
-        <p class="widget__news-paragraph">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-          sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-          Ut enim ad minim veniam, 
-        </p>
-        <a href="#" class="widget__news-link">подробнее...</a>
-      </article>
+        <article class="widget__article">
+          <div class="widget__news-date-author-wrap">
+            <p class="widget__news-date">06.12.2020</p>
+            <p class="widget__news-author">Антониус Никополидиус</p>
+          </div>  
+          <p class="widget__news-paragraph">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, 
+          </p>
+          <a href="#" class="widget__news-link">подробнее...</a>
+        </article>
+      </div>
 
       <button type="button" class="widget__news-item news-button news-button_visited">
         Мясо кончилось
       </button>
 
     </div>
+    
 
-    <tamplate id="#news-widget-button">
+    <template>
       <button class="widget__button-wrap">
         <p class="widget__button-text">
           Новых новостей
@@ -49,7 +52,7 @@
           2
         </p>
       </button>
-    </tamplate>   
+    </template>   
 
   </section>
 
