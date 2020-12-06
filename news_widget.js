@@ -1,5 +1,27 @@
+/*************************************************/
+/*                                               */
+/* Скрипт для показа новостей.                   */
+/* На данный момент новости подкружаются         */
+/* из массива. Для установки необходимо создать  */
+/* контейнер с id="widget" в том месте, где      */
+/* Вы хотите разместить кнопку.                  */
+/*                                               */
+/*************************************************/
+
+
+// создание ссылки на стили в head
+window.onload = function(){
+  const stylesheetPath = './styles/widget_styles.css';
+  const headTag = document.querySelector('head');
+  const linkTag = document.createElement("link");
+  linkTag.setAttribute('rel', 'stylesheet');
+  linkTag.setAttribute('href', stylesheetPath);
+  headTag.append(linkTag);
+}
+
 const storedPlace = document.querySelector('#widget');
 
+// массив данных для подстановки в виджет
 const newsArray = [
   {
     title: 'У попа была собака', 
@@ -11,15 +33,15 @@ const newsArray = [
   {
     title: 'Она съела всё мясо', 
     date: '04.12.2020', 
-    author: 'Антониус Никополидиус', 
+    author: 'Сципион Африканский', 
     paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam', 
     link: 'http://yandex.ru'
   }, 
   {
-    title: 'Мясо закончилось', 
+    title: 'Сказание о еллинском философе и премудром Аристотеле', 
     date: '06.12.2020', 
-    author: 'Антониус Никополидиус', 
-    paragraph: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam', 
+    author: 'Аристотель Премудрый', 
+    paragraph: 'Образ же имел возраста своего средний. Глава его не велика, голос его тонок, очи малы, ноги тонки. А ходил в разноцветном и хорошем одеянии. А перстней и чепей золотых охочь был носити… а умывался в судне маслом древяным теплым', 
     link: 'http://yandex.ru'
   }
 ];
@@ -36,6 +58,7 @@ function createNewsExitButton() {
   return newsWrapExitButton;
 }
 
+// инициализирует новостной блок из входящего массива
 function createNews(newsArray) {
   const newsItem = document.createElement('button');
   const newsItemAndArticleContainer = document.createElement('div');
@@ -63,6 +86,9 @@ function createNews(newsArray) {
   newsItem.setAttribute('type', 'button');
   newsItem.classList.add('widget__news-item', 'news-button', 'news-button_not-visited');
 
+  // при нажатии на кнопку новость считается прочитанной
+  // после этого кнопка виджета уничтожается и создается 
+  // новая, нем самым обновляя счётчик.
   newsItem.addEventListener('click', (evt) => {
     evt.target.classList.remove('news-button_not-visited');
     evt.target.classList.toggle('news-button_active');
@@ -84,6 +110,7 @@ function createNews(newsArray) {
   return newsItemAndArticleContainer;
 }
 
+// соединяет новостной контейнер с кнопкой выхода
 function formAllNewsInOneContainer() {
   const allNewsContainer = document.createElement('div');
   allNewsContainer.classList.add('widget__news-wrap');
@@ -105,6 +132,9 @@ function renderAllElements() {
   storedPlace.append(createButton(countNotReadedNews()));
 }
 
+// подсчитывает количество непрочитанных тем.
+// не прочитанная - это та, где есть 
+// класс 'news-button_not-visited'
 function countNotReadedNews() {
   let count = 0;
   const newsItem = document.querySelectorAll('.widget__news-item');
@@ -121,6 +151,7 @@ function countNotReadedNews() {
 
 renderAllElements();
 
+// создание основной кнопки виджета
 function createButton(evt) {
   const buttonWrap = document.createElement('button');
   const buttonText = document.createElement('p');
@@ -134,6 +165,7 @@ function createButton(evt) {
   return buttonWrap;
 }
 
+// открытие попапа
 function openNewsList() {
   const widgetButton = document.querySelector('.widget__button-wrap');
   const widgetPopup = document.querySelector('.widget__news-wrap');

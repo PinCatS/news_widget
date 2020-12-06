@@ -1,6 +1,4 @@
 @import url(../vendor/fonts/inter.css);
-@import url(../blocks/body/body.css);
-@import url(../blocks/wrap/wrap.css);
 @import url(../blocks/widget/widget.css);
 @import url(../blocks/widget/__button-wrap/widget__button-wrap.css);
 @import url(../blocks/widget/__button-text/widget__button-text.css);
