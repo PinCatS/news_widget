@@ -40,7 +40,7 @@ function updateNewsUnreadCounter(widgetElement) {
 function markArtticleAsReadInNewsData(newsId) {
   for (let news of newsArray) {
     if (news.id == newsId) {
-      news.visisted = true;
+      news.visited = true;
     }
   }
 }
@@ -143,7 +143,9 @@ function openNewsList() {
 }
 
 function initCounter(newsList) {
-  let count = newsList.length;
+  let count = newsList.filter((item)=> {
+    return item.visited == false;
+  }).length;
   return {
     unreadCounter: count,
     decreaseCounter: () => --count,
@@ -153,7 +155,7 @@ function initCounter(newsList) {
 const storedPlace = document.querySelector('#widget');
 const allNewsContainer = formAllNewsInOneContainer();
 const newsNodesList = formNewsList(newsArray);
-const newsCounter = initCounter(newsNodesList);
+const newsCounter = initCounter(newsArray);
 
 allNewsContainer.append(...newsNodesList);
 renderAllElements();
