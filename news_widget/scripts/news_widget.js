@@ -37,10 +37,11 @@ function updateNewsUnreadCounter(widgetElement) {
   widgetElement.querySelector('.widget__button-number').textContent = (newUnreadCount == 0) ? 'нет' : newUnreadCount;
 }
 
-function markArtticleAsReadInNewsData(newsId) {
+function markArticleAsReadInNewsData(newsId) {
   for (let news of newsArray) {
     if (news.id == newsId) {
       news.visited = true;
+      break;
     }
   }
 }
@@ -82,7 +83,7 @@ function createNews(newsArray) {
     evt.target.classList.remove('news-button_not-visited');
     evt.target.classList.toggle('news-button_active');
     newsArticleContainer.classList.toggle('news_visible');
-    markArtticleAsReadInNewsData(evt.target.newsId);
+    markArticleAsReadInNewsData(evt.target.newsId);
 
     const buttonWrap = document.querySelectorAll('.widget__button-wrap');
     [...buttonWrap].forEach(element => {
