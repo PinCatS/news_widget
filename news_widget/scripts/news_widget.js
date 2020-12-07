@@ -20,33 +20,6 @@ window.onload = function(){
   headTag.append(linkTag);
 }
 
-const storedPlace = document.querySelector('#widget');
-
-// массив данных для подстановки в виджет
-const newsArray = [
-  {
-    title: 'Отказался от премии ', 
-    date: '12.09.2006', 
-    author: 'Григорий Перельман', 
-    paragraph: 'Я отказался. Вы знаете, у меня было очень много причин и в ту, и в другую сторону. Поэтому я так долго решал. Если говорить совсем коротко, то главная причина — это несогласие с организованным математическим сообществом. Мне не нравятся их решения, я считаю их несправедливыми. Я считаю, что вклад в решение этой задачи американского математика Гамильтона ничуть не меньше, чем мой', 
-    link: 'https://ru.wikipedia.org/wiki/%D0%9F%D0%B5%D1%80%D0%B5%D0%BB%D1%8C%D0%BC%D0%B0%D0%BD,_%D0%93%D1%80%D0%B8%D0%B3%D0%BE%D1%80%D0%B8%D0%B9_%D0%AF%D0%BA%D0%BE%D0%B2%D0%BB%D0%B5%D0%B2%D0%B8%D1%87'
-  }, 
-  {
-    title: 'Был бы человек, а статья найдётся', 
-    date: '14.04.1928', 
-    author: 'Иосиф Сталин', 
-    paragraph: 'Говорят, что невозможно коммунистам, особенно же рабочим коммунистам-хозяйственникам, овладеть химическими формулами и вообще техническими знаниями. Это неверно, товарищи. Нет в мире таких крепостей, которых не могли бы взять трудящиеся, большевики.', 
-    link: 'https://ru.wikipedia.org/wiki/%D0%A1%D1%82%D0%B0%D0%BB%D0%B8%D0%BD,_%D0%98%D0%BE%D1%81%D0%B8%D1%84_%D0%92%D0%B8%D1%81%D1%81%D0%B0%D1%80%D0%B8%D0%BE%D0%BD%D0%BE%D0%B2%D0%B8%D1%87'
-  }, 
-  {
-    title: 'Сказание о еллинском философе и премудром Аристотеле', 
-    date: '370 г до н.э.', 
-    author: 'Аристотель Премудрый', 
-    paragraph: 'Образ же имел возраста своего средний. Глава его не велика, голос его тонок, очи малы, ноги тонки. А ходил в разноцветном и хорошем одеянии. А перстней и чепей золотых охочь был носити… а умывался в судне маслом древяным теплым', 
-    link: 'https://ru.wikipedia.org/wiki/%D0%90%D1%80%D0%B8%D1%81%D1%82%D0%BE%D1%82%D0%B5%D0%BB%D1%8C'
-  }
-];
-
 function createNewsExitButton() {
   const newsWrapExitButton = document.createElement('button');
   newsWrapExitButton.setAttribute('type', 'button');
@@ -57,6 +30,19 @@ function createNewsExitButton() {
     newsWrap.classList.add('widget__hidden');
   });
   return newsWrapExitButton;
+}
+
+function updateNewsUnreadCounter(widgetElement) {
+  const newUnreadCount = newsCounter.decreaseCounter();
+  widgetElement.querySelector('.widget__button-number').textContent = (newUnreadCount == 0) ? 'нет' : newUnreadCount;
+}
+
+function markArtticleAsReadInNewsData(newsId) {
+  for (let news of newsArray) {
+    if (news.id == newsId) {
+      news.visisted = true;
+    }
+  }
 }
 
 // инициализирует новостной блок из входящего массива
@@ -77,6 +63,7 @@ function createNews(newsArray) {
   newsAuthor.classList.add('widget__news-author');
   newsParagraph.classList.add('widget__news-paragraph');
   
+  newsItem.newsId = newsArray.id;
   newsItem.textContent = newsArray.title;
   newsDate.textContent = newsArray.date;
   newsAuthor.textContent = newsArray.author;
@@ -95,14 +82,14 @@ function createNews(newsArray) {
     evt.target.classList.remove('news-button_not-visited');
     evt.target.classList.toggle('news-button_active');
     newsArticleContainer.classList.toggle('news_visible');
+    markArtticleAsReadInNewsData(evt.target.newsId);
 
     const buttonWrap = document.querySelectorAll('.widget__button-wrap');
     [...buttonWrap].forEach(element => {
       if(element.classList.contains('widget__button-wrap')) {
-        element.remove();
+        updateNewsUnreadCounter(element);
       }
     });
-    storedPlace.append(createButton(countNotReadedNews()));
   });
 
   newsDateAndAuthorContainer.append(newsDate, newsAuthor);
@@ -121,9 +108,6 @@ function formAllNewsInOneContainer() {
   return allNewsContainer;
 }
 
-const allNewsContainer = formAllNewsInOneContainer();
-allNewsContainer.append(...formNewsList(newsArray));
-
 function formNewsList(array) {
   const listItems = array.map(createNews);
   return listItems;
@@ -131,30 +115,11 @@ function formNewsList(array) {
 
 function renderAllElements() {
   storedPlace.append(allNewsContainer);
-  storedPlace.append(createButton(countNotReadedNews()));
+  storedPlace.append(createButton());
 }
-
-// подсчитывает количество непрочитанных тем.
-// не прочитанная - это та, где есть 
-// класс 'news-button_not-visited'
-function countNotReadedNews() {
-  let count = 0;
-  const newsItem = document.querySelectorAll('.widget__news-item');
-  [...newsItem].forEach(element => {
-    if (element.classList.contains('news-button_not-visited')) {
-      count++;
-    }
-  });
-  if (count == 0) {
-    count = 'нет';
-  }
-  return count;
-}
-
-renderAllElements();
 
 // создание основной кнопки виджета
-function createButton(evt) {
+function createButton() {
   const buttonWrap = document.createElement('button');
   const buttonText = document.createElement('p');
   const buttonNumber = document.createElement('p');
@@ -162,7 +127,7 @@ function createButton(evt) {
   buttonText.classList.add('widget__button-text');
   buttonWrap.classList.add('widget__button-wrap');
   buttonText.textContent = 'Новых новостей';
-  buttonNumber.textContent = evt;
+  buttonNumber.textContent = newsCounter.unreadCounter;
   buttonWrap.append(buttonText, buttonNumber);
   return buttonWrap;
 }
@@ -177,4 +142,19 @@ function openNewsList() {
   });
 }
 
+function initCounter(newsList) {
+  let count = newsList.length;
+  return {
+    unreadCounter: count,
+    decreaseCounter: () => --count,
+  }
+}
+
+const storedPlace = document.querySelector('#widget');
+const allNewsContainer = formAllNewsInOneContainer();
+const newsNodesList = formNewsList(newsArray);
+const newsCounter = initCounter(newsNodesList);
+
+allNewsContainer.append(...newsNodesList);
+renderAllElements();
 openNewsList();
