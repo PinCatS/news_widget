@@ -110,7 +110,10 @@ function formAllNewsInOneContainer() {
 }
 
 function formNewsList(array) {
-  const listItems = array.map(createNews);
+  const unreadNews = array.filter((item) => {
+    return item.visited == false; 
+  })
+  const listItems = unreadNews.map(createNews);
   return listItems;
 }
 
