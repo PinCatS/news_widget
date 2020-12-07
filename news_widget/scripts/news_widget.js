@@ -146,10 +146,8 @@ function openNewsList() {
   });
 }
 
-function initCounter(newsList) {
-  let count = newsList.filter((item)=> {
-    return item.visited == false;
-  }).length;
+function initCounter(newsCount) {
+  let count = newsCount;
   return {
     unreadCounter: count,
     decreaseCounter: () => --count,
@@ -159,7 +157,7 @@ function initCounter(newsList) {
 const storedPlace = document.querySelector('#widget');
 const allNewsContainer = formAllNewsInOneContainer();
 const newsNodesList = formNewsList(newsArray);
-const newsCounter = initCounter(newsArray);
+const newsCounter = initCounter(newsNodesList.length);
 
 allNewsContainer.append(...newsNodesList);
 renderAllElements();
